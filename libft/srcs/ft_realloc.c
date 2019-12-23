@@ -1,41 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_realloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/19 18:33:38 by srouhe            #+#    #+#             */
-/*   Updated: 2019/12/23 15:25:33 by srouhe           ###   ########.fr       */
+/*   Created: 2019/12/23 15:00:33 by srouhe            #+#    #+#             */
+/*   Updated: 2019/12/23 15:06:43 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "libft.h"
 
-/*
-** -------- HEADERS --------
-*/
+void	*ft_realloc(void *ptr, size_t old_s, size_t new_s)
+{
+	void	*new;
 
-# include "libft.h"
-# include <sys/types.h>
-# include <sys/stat.h>
-# include <sys/wait.h>
-# include <signal.h>
-# include <dirent.h>
-
-/*
-** -------- MACROS --------
-*/
-
-char	**g_env;
-
-/*
-** -------- TYPEDEFS --------
-*/
-
-/*
-** -------- FUNCTIONS --------
-*/
-
-#endif
+	if (!ptr)
+		return (NULL);
+	if (!(new = ft_memalloc(new_s)))
+	{
+		free(ptr);
+		return (NULL);
+	}
+	if (new_s > old_s)
+		ft_memcpy(new, ptr, new_s);
+	else
+		ft_memcpy(new, ptr, old_s);
+	free(ptr);
+	return (new);
+}
