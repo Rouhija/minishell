@@ -6,7 +6,7 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 18:37:39 by srouhe            #+#    #+#             */
-/*   Updated: 2019/12/23 15:34:03 by srouhe           ###   ########.fr       */
+/*   Updated: 2019/12/23 16:02:06 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	exit_shell(int reason)
 {
+	reason == 3 ? ft_putendl("keyboard interrupt.") : PASS;
 	exit(reason);
 }
 
@@ -47,22 +48,22 @@ void	prompt(void)
 	ft_putstr(" > ");
 }
 
-void	get_envv(int ac, char **av, char **envv)
+void	get_envv(int ac, char **av, char **env)
 {
 	int		i;
 	int		size;
 
 	size = 0;
-	while (envv[size])
+	while (env[size])
 		size++;
 	i = 0;
 	(void)ac;
 	(void)av;
 	if (!(g_env = (char **)malloc(sizeof(char*) * (size + 1))))
 		exit_shell(2);
-	while (envv[i])
+	while (env[i])
 	{
-		if (!(g_env[i] = ft_strdup(envv[i])))
+		if (!(g_env[i] = ft_strdup(env[i])))
 			exit_shell(2);
 		i++;
 	}
@@ -78,7 +79,7 @@ void	signal_handler(int signo)
 	}
 }
 
-int		main(int ac, char **av, char **envv)
+int		main(int ac, char **av, char **env)
 {
 	char 	*path;
 	char 	*args[] = {"/bin/ls", "-R", NULL};
@@ -86,19 +87,19 @@ int		main(int ac, char **av, char **envv)
 
 	// path = ft_pathjoin("/bin", av[1]);
 	// execv("/bin/ls", args);
-	get_envv(ac, av, envv);
+	get_envv(ac, av, env);
 	prompt();
-	// while (1)
-	// {
-		// signal(SIGINT, signal_handler);
-	read_input(&input);
-	ft_putendl(input);
-	while (*g_env)
+	while (1)
 	{
-		ft_putendl(*g_env);
-		*g_env++;
-	}
-	// }
+		signal(SIGINT, signal_handler);
+		read_input(&input);
+		ft_putendl(input);
+		while (*g_env)
+		{
+			ft_putendl(*g_env);
+			*g_env++;
+		}
+		}
 	// perror("execv");
 	free(input);
 	return (0);
