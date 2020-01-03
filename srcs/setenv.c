@@ -6,11 +6,31 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 17:01:10 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/03 19:11:22 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/03 19:38:42 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static char		**add_slot(size_t size)
+{
+	int		i;
+	char	**new;
+
+	i = 0;
+	if (!(new = (char **)malloc(sizeof(char *) * (size + 1))))
+		exit_shell(2);
+	while (g_env[i] && i < size - 1)
+	{
+		if (!(new[i] = ft_strdup(g_env[i])))
+			exit_shell(2);
+		free(g_env[i]);
+		i++;
+	}
+	new[size] = NULL;
+	free(g_env);
+	return (new);
+}
 
 static void		set_env(char *key, char *value)
 {
@@ -29,7 +49,7 @@ static void		set_env(char *key, char *value)
 	}
 	else
 	{
-		g_env = env_realloc(i + 1);
+		g_env = add_slot(i + 1);
 		if (value)
 			g_env[i] = ft_strjoin(tmp, value);
 		else

@@ -6,7 +6,7 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 18:33:38 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/03 19:03:22 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/03 19:38:53 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int		display_env(void);
 int		find_env(char *var);
 int		setenv_builtin(char **cmd);
 int		unsetenv_builtin(char **args);
-char	**env_realloc(size_t size);
 void	init_env(int ac, char **av, char **env);
 void	exit_shell(int reason);
 void	signal_handler(int signo);

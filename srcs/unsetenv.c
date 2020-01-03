@@ -6,22 +6,40 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 18:13:41 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/03 19:21:51 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/03 19:41:28 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void		delete_env(int i)
+static void		delete_env(int pos)
 {
-	ft_strdel(&g_env[i]);
-	while (g_env[i + 1])
+	int		i;
+	int		j;
+	int		len;
+	char	**new;
+
+	i = 0;
+	j = 0;
+	len = env_len(g_env);
+	if (!(new = (char **)malloc(sizeof(char *) * (len))))
+		exit_shell(2);
+	while (g_env[j])
 	{
-		g_env[i] = ft_strdup(g_env[i + 1]);
-		free(g_env[i + 1]);
+		if (j == pos)
+		{
+			ft_strdel(&g_env[j]);
+			j++;
+		}
+		if (!(new[i] = ft_strdup(g_env[j])))
+			exit_shell(2);
+		ft_strdel(&g_env[j]);
 		i++;
+		j++;
 	}
-	g_env = env_realloc(env_len(g_env) - 1);
+	new[len - 1] = NULL;
+	free(g_env);
+	g_env = new;
 }
 
 int				unsetenv_builtin(char **args)

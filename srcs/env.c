@@ -6,7 +6,7 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 14:56:31 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/03 19:24:18 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/03 19:37:53 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,24 +75,4 @@ void	init_env(int ac, char **av, char **env)
 		i++;
 	}
 	g_env[size] = NULL;
-}
-
-char	**env_realloc(size_t size)
-{
-	int		i;
-	char	**new;
-
-	i = 0;
-	if (!(new = (char **)malloc(sizeof(char *) * (size + 1))))
-		exit_shell(2);
-	while (g_env[i] && i < size - 1)
-	{
-		if (!(new[i] = ft_strdup(g_env[i])))
-			exit_shell(2);
-		free(g_env[i]);
-		i++;
-	}
-	new[size] = NULL;
-	free(g_env);
-	return (new);
 }
