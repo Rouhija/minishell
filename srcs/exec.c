@@ -6,7 +6,7 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 15:12:08 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/03 18:43:53 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/04 00:18:41 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int		run_cmd(char **cmd)
 
 int		builtins(char **cmd)
 {
+	if (ft_strequ(cmd[0], "exit"))
+		return (-1);
 	if (ft_strequ(cmd[0], "echo"))
 		return (echo_builtin(cmd + 1));
 	else if (ft_strcmp(cmd[0], "cd") == 0)
@@ -46,18 +48,13 @@ int		builtins(char **cmd)
 		return (unsetenv_builtin(cmd + 1));
 	else if (ft_strequ(cmd[0], "env"))
 		return (display_env());
-	else if (ft_strcmp(cmd[0], "exit") == 0)
-	{
-		ft_putendl("exit");
-		return (1);
-	}
 	return (0);
 }
 
 int		exec_cmd(char **cmd)
 {
-	if (builtins(cmd))
-		return (1);
+	if (builtins(cmd) < 0)
+		return (-1);
 	else
 		run_cmd(cmd);
 	return (1);

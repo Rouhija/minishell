@@ -6,7 +6,7 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 18:37:39 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/03 19:00:13 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/04 01:34:13 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	display_prompt(void)
 
 int		main(int ac, char **av, char **env)
 {
+	int		r;
 	char	*input;
 	char	**cmds;
 
@@ -68,8 +69,11 @@ int		main(int ac, char **av, char **env)
 		read_input(&input);
 		cmds = ft_strsplit(input, ' ');
 		free(input);
-		exec_cmd(cmds);
+		r = exec_cmd(cmds);
 		ft_freestrarr(cmds);
+		if (r < 0)
+			break ;
 	}
+	ft_freestrarr(g_env);
 	return (0);
 }

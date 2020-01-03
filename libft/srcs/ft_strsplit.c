@@ -6,12 +6,11 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 17:35:12 by srouhe            #+#    #+#             */
-/*   Updated: 2019/10/18 17:11:08 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/04 01:25:22 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
 static int	ft_len(char const *str, char c)
 {
@@ -48,12 +47,12 @@ static int	ft_splits(char const *str, char c)
 
 char		**ft_strsplit(char const *s, char c)
 {
-	char	**range;
+	char	**arr;
 	int		i;
 	int		j;
 	int		flag;
 
-	if (!s || !(range = (char **)malloc(sizeof(char *) * ft_splits(s, c) + 1)))
+	if (!s || !(arr = (char **)malloc(sizeof(char *) * (ft_splits(s, c) + 1))))
 		return (NULL);
 	i = 0;
 	j = 0;
@@ -63,14 +62,14 @@ char		**ft_strsplit(char const *s, char c)
 		if (s[i] != c && !flag)
 		{
 			flag = 1;
-			range[j] = ft_memalloc(ft_len(&s[i], c) + 1);
-			ft_strncpy(range[j], &s[i], ft_len(&s[i], c));
+			arr[j] = ft_memalloc(ft_len(&s[i], c) + 1);
+			ft_strncpy(arr[j], &s[i], ft_len(&s[i], c));
 			j++;
 		}
 		else if (s[i] == c)
 			flag = 0;
 		i++;
 	}
-	range[j] = 0;
-	return (range);
+	arr[j] = 0;
+	return (arr);
 }
