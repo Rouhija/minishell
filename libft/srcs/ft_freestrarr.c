@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_freestrarr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/18 13:36:58 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/03 16:34:09 by srouhe           ###   ########.fr       */
+/*   Created: 2020/01/03 16:05:22 by srouhe            #+#    #+#             */
+/*   Updated: 2020/01/03 16:09:19 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr(char const *s)
+void	ft_freestrarr(char **arr)
 {
-	size_t len;
+	int		i;
 
-	if (s)
+	i = 0;
+	if (arr)
 	{
-		len = ft_strlen(s);
-		write(1, s, len);
+		while (arr[i])
+		{
+			free(arr[i]);
+			arr[i] = NULL;
+			i++;
+		}
+		free(arr);
+		arr = NULL;
 	}
 }

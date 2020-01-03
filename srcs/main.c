@@ -6,7 +6,7 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 18:37:39 by srouhe            #+#    #+#             */
-/*   Updated: 2019/12/23 16:02:06 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/03 19:00:13 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,14 @@
 
 void	exit_shell(int reason)
 {
+	ft_freestrarr(g_env);
+	reason == 1 ? ft_putendl("other error.") : PASS;
+	reason == 2 ? ft_putendl("malloc error.") : PASS;
 	reason == 3 ? ft_putendl("keyboard interrupt.") : PASS;
 	exit(reason);
 }
 
-int		read_input(char **input)
+void		read_input(char **input)
 {
 	int		n_read;
 	int		size;
@@ -34,12 +37,16 @@ int		read_input(char **input)
 		*input = ft_realloc(*input, (size_t)size, (size_t)(size + 1));
 		size++;
 	}
-	if (!n_read)
-		exit_shell(1);
 	*(*input + i) = '\0';
+	if (!n_read)
+	{
+		free(input);
+		exit_shell(1);
+	}
+	// parse $ and ~
 }
 
-void	prompt(void)
+void	display_prompt(void)
 {
 	char buffer[1024 + 1];
 
@@ -48,59 +55,21 @@ void	prompt(void)
 	ft_putstr(" > ");
 }
 
-void	get_envv(int ac, char **av, char **env)
-{
-	int		i;
-	int		size;
-
-	size = 0;
-	while (env[size])
-		size++;
-	i = 0;
-	(void)ac;
-	(void)av;
-	if (!(g_env = (char **)malloc(sizeof(char*) * (size + 1))))
-		exit_shell(2);
-	while (env[i])
-	{
-		if (!(g_env[i] = ft_strdup(env[i])))
-			exit_shell(2);
-		i++;
-	}
-}
-
-void	signal_handler(int signo)
-{
-	if (signo == SIGINT)
-	{
-		ft_putstr("\n");
-		prompt();
-		signal(SIGINT, signal_handler);
-	}
-}
-
 int		main(int ac, char **av, char **env)
 {
-	char 	*path;
-	char 	*args[] = {"/bin/ls", "-R", NULL};
 	char	*input;
+	char	**cmds;
 
-	// path = ft_pathjoin("/bin", av[1]);
-	// execv("/bin/ls", args);
-	get_envv(ac, av, env);
-	prompt();
+	init_env(ac, av, env);
 	while (1)
 	{
+		display_prompt();
 		signal(SIGINT, signal_handler);
 		read_input(&input);
-		ft_putendl(input);
-		while (*g_env)
-		{
-			ft_putendl(*g_env);
-			*g_env++;
-		}
-		}
-	// perror("execv");
-	free(input);
+		cmds = ft_strsplit(input, ' ');
+		free(input);
+		exec_cmd(cmds);
+		ft_freestrarr(cmds);
+	}
 	return (0);
 }

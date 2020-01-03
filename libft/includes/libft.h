@@ -6,7 +6,7 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 16:29:36 by srouhe            #+#    #+#             */
-/*   Updated: 2019/12/23 15:04:57 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/03 16:36:12 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,8 @@ char				*ft_pathjoin(char *dirname, char *filename);
 void				ft_print_hex(uint64_t n);
 void				ft_print_bits(uint64_t bits, int len);
 void				*ft_realloc(void *ptr, size_t old_s, size_t new_s);
+void				ft_freestrarr(char **arr);
+void				ft_putnstr(char const *s, size_t n);
 size_t				ft_leading_char_count(char const *s, int (*f)(int));
 size_t				ft_trailing_char_count(char const *s, int (*f)(int));
 size_t				ft_strchr_len(const char *s, int c);

@@ -6,7 +6,7 @@
 #    By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/15 16:29:02 by srouhe            #+#    #+#              #
-#    Updated: 2019/12/19 18:38:23 by srouhe           ###   ########.fr        #
+#    Updated: 2020/01/03 18:13:54 by srouhe           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,13 @@ NAME 	= 	minishell
 C		= 	gcc
 FLAGS 	=  
 
-FILES 	=	main.c
+FILES 	=	main.c \
+			env.c \
+			setenv.c \
+			unsetenv.c \
+			signal.c \
+			exec.c \
+			echo.c
 
 SRCS 	=	$(addprefix srcs/, $(FILES))
 OBJS 	=	$(FILES:.c=.o)
