@@ -6,7 +6,7 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 18:33:38 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/04 19:22:24 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/04 21:57:47 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,11 @@ int		setenv_builtin(char **cmd);
 void	set_env(char *key, char *value);
 int		unsetenv_builtin(char **args);
 char	**realloc_arr(size_t size);
+void	read_input(char **input);
 void	init_env(int ac, char **av, char **env);
 void	exit_shell(int reason);
-void	signal_handler(int signo);
-void	sub_signal_handler(int signo);
+void	parent_signal_handler(int signo);
+void	child_signal_handler(int signo);
 void	display_prompt(void);
 int		exec_cmd(char **cmd);
 int		echo_builtin(char **args);

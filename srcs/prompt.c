@@ -6,13 +6,13 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/04 18:11:02 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/04 19:12:03 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/04 20:59:06 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static char	*parse_host(void)
+static char		*parse_host(void)
 {
 	char	*user;
 	char	*host;
@@ -27,7 +27,7 @@ static char	*parse_host(void)
 	return (r);
 }
 
-static char	*parse_path(char *cwd)
+static char		*parse_path(char *cwd)
 {
 	char	*home;
 	char	*propmt;
@@ -46,7 +46,7 @@ static char	*parse_path(char *cwd)
 **		Format: user@hostname:pwd>
 */
 
-void		display_prompt(void)
+void			display_prompt(void)
 {
 	char	*host;
 	char	*prompt;
@@ -64,5 +64,5 @@ void		display_prompt(void)
 	ft_putstr(NORMAL);
 	ft_strdel(&host);
 	ft_strdel(&prompt);
-	ft_putstr("☭> ");
+	ft_putstr(" ☭ -> ");
 }

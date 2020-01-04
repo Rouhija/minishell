@@ -6,7 +6,7 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 15:12:08 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/04 19:24:25 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/04 20:49:12 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,16 @@ int		run_cmd(char *bin, char **cmd)
 	pid_t	pid;
 
 	pid = fork();
-	if (pid < 0)
+	signal(SIGINT, child_signal_handler);
+	if (!pid)
+		execve(bin, cmd, g_env);
+	else if (pid < 0)
 	{
-		ft_putendl("fork fail.");
+		ft_putendl("minishell: Failed to create child process.");
 		return (-1);
 	}
-	signal(SIGINT, sub_signal_handler);
-	execve(bin, cmd, g_env);
 	wait(&pid);
+	free(bin);
 	return (1);
 }
 
@@ -44,7 +46,10 @@ int		bins(char **cmd)
 	{
 		exec = ft_pathjoin(path[i], cmd[0]);
 		if (!lstat(exec, &attr))
+		{
+			ft_freestrarr(path);
 			return (run_cmd(exec, cmd));
+		}
 		free(exec);
 		i++;
 	}
