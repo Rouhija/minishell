@@ -35,3 +35,7 @@ execv(const char *path, char *const argv[]);
 
 ### Reading
 [exec/fork/wait](https://www.usna.edu/Users/cs/aviv/classes/ic221/s16/lec/14/lec.html)
+
+pipes
+https://www.geeksforgeeks.org/pipe-system-call/
+https://stackoverflow.com/questions/10028038/how-to-simulate-keyboard-input-for-a-program-in-c
