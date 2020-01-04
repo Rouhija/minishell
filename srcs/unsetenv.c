@@ -6,41 +6,31 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 18:13:41 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/03 19:41:28 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/04 17:06:20 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void		delete_env(int pos)
+static void		unset_env(int pos)
 {
-	int		i;
-	int		j;
-	int		len;
-	char	**new;
+	int	i;
 
-	i = 0;
-	j = 0;
-	len = env_len(g_env);
-	if (!(new = (char **)malloc(sizeof(char *) * (len))))
-		exit_shell(2);
-	while (g_env[j])
+	ft_strdel(&g_env[pos]);
+	i = pos;
+	while(g_env[i + 1])
 	{
-		if (j == pos)
-		{
-			ft_strdel(&g_env[j]);
-			j++;
-		}
-		if (!(new[i] = ft_strdup(g_env[j])))
-			exit_shell(2);
-		ft_strdel(&g_env[j]);
+		g_env[i] = ft_strdup(g_env[i + 1]);
+		ft_strdel(&g_env[i + 1]);
 		i++;
-		j++;
 	}
-	new[len - 1] = NULL;
-	free(g_env);
-	g_env = new;
+	g_env = realloc_arr(pos + i);
 }
+
+/*
+**		Built in unsetenv command.
+**		One or multiple arguments.
+*/
 
 int				unsetenv_builtin(char **args)
 {
@@ -56,7 +46,7 @@ int				unsetenv_builtin(char **args)
 		{
 			pos = find_env(args[i]);
 			if (g_env[pos])
-				delete_env(pos);
+				unset_env(pos);
 			i++;
 		}
 	}

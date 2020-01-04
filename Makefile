@@ -6,7 +6,7 @@
 #    By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/15 16:29:02 by srouhe            #+#    #+#              #
-#    Updated: 2020/01/03 18:13:54 by srouhe           ###   ########.fr        #
+#    Updated: 2020/01/04 17:00:00 by srouhe           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,12 +15,13 @@ C		= 	gcc
 FLAGS 	=  
 
 FILES 	=	main.c \
-			env.c \
+			utils_env.c \
 			setenv.c \
 			unsetenv.c \
 			signal.c \
 			exec.c \
-			echo.c
+			echo.c \
+			cd.c
 
 SRCS 	=	$(addprefix srcs/, $(FILES))
 OBJS 	=	$(FILES:.c=.o)

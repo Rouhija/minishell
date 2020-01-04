@@ -6,7 +6,7 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 18:37:39 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/04 01:34:13 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/04 17:12:21 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ void		read_input(char **input)
 
 void	display_prompt(void)
 {
-	char buffer[1024 + 1];
+	char buffer[BUF_SIZE + 1];
 
-	getcwd(buffer, 1024);
+	getcwd(buffer, BUF_SIZE);
 	ft_putstr(buffer);
 	ft_putstr(" > ");
 }
@@ -70,6 +70,7 @@ int		main(int ac, char **av, char **env)
 		cmds = ft_strsplit(input, ' ');
 		free(input);
 		r = exec_cmd(cmds);
+		// ft_printf("exec return: %d\n", r);
 		ft_freestrarr(cmds);
 		if (r < 0)
 			break ;

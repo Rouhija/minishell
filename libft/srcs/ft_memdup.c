@@ -6,7 +6,7 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 14:11:15 by srouhe            #+#    #+#             */
-/*   Updated: 2019/12/19 12:07:33 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/04 18:00:11 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void			*ft_memdup(void const *src, size_t n)
 	unsigned char	*p2;
 	void			*r;
 
-	if (!(r = ft_memalloc(n)))
+	if (!(r = ft_memalloc(n + 1)))
 		return (NULL);
 	p1 = (unsigned char *)src;
 	p2 = (unsigned char *)r;

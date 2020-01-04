@@ -1,25 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   utils_env.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 14:56:31 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/03 19:37:53 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/04 17:21:09 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		env_len(char **env)
+void	init_env(int ac, char **av, char **env)
 {
-	int	i;
+	int		i;
+	int		size;
 
+	size = 0;
+	while (env[size])
+		size++;
 	i = 0;
+	(void)ac;
+	(void)av;
+	if (!(g_env = (char **)malloc(sizeof(char *) * (size + 1))))
+		exit_shell(2);
 	while (env[i])
+	{
+		if (!(g_env[i] = ft_strdup(env[i])))
+			exit_shell(2);
 		i++;
-	return (i);
+	}
+	g_env[size] = NULL;
 }
 
 int		display_env(void)
@@ -55,24 +67,42 @@ int		find_env(char *var)
 	return (i);
 }
 
-void	init_env(int ac, char **av, char **env)
+char	*get_env(char *var)
 {
 	int		i;
-	int		size;
+	char	*parsed;
 
-	size = 0;
-	while (env[size])
-		size++;
 	i = 0;
-	(void)ac;
-	(void)av;
-	if (!(g_env = (char **)malloc(sizeof(char *) * (size + 1))))
-		exit_shell(2);
-	while (env[i])
+	while (g_env[i])
 	{
-		if (!(g_env[i] = ft_strdup(env[i])))
-			exit_shell(2);
+		parsed = ft_strsub(g_env[i], 0, ft_lfind(g_env[i], '='));
+		if (ft_strequ(parsed, var))
+		{
+			free(parsed);
+			return (ft_strchr(g_env[i], '=') + 1);
+		}
+		free(parsed);
 		i++;
 	}
-	g_env[size] = NULL;
+	return (NULL);
+}
+
+char		**realloc_arr(size_t size)
+{
+	int		i;
+	char	**new;
+
+	i = 0;
+	if (!(new = (char **)malloc(sizeof(char *) * (size + 1))))
+		exit_shell(2);
+	while (g_env[i] && i < size - 1)
+	{
+		if (!(new[i] = ft_strdup(g_env[i])))
+			exit_shell(2);
+		ft_strdel(&g_env[i]);
+		i++;
+	}
+	new[i] = NULL;
+	free(g_env);
+	return (new);
 }

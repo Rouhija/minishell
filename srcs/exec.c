@@ -6,7 +6,7 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 15:12:08 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/04 00:18:41 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/04 18:04:02 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,10 @@ int		builtins(char **cmd)
 {
 	if (ft_strequ(cmd[0], "exit"))
 		return (-1);
-	if (ft_strequ(cmd[0], "echo"))
+	else if (ft_strequ(cmd[0], "echo"))
 		return (echo_builtin(cmd + 1));
-	else if (ft_strcmp(cmd[0], "cd") == 0)
-	{
-		ft_putendl("cd");
-		return (1);
-	}
+	else if (ft_strequ(cmd[0], "cd"))
+		return (cd_builtin(cmd + 1));
 	else if (ft_strequ(cmd[0], "setenv"))
 		return (setenv_builtin(cmd + 1));
 	else if (ft_strequ(cmd[0], "unsetenv"))
@@ -53,9 +50,15 @@ int		builtins(char **cmd)
 
 int		exec_cmd(char **cmd)
 {
-	if (builtins(cmd) < 0)
+	int r;
+	// ft_printf("cmd[0]: %s\n", cmd[0]);
+	if ((r = builtins(cmd)) == 1)
+		return (0);
+	else if (r == -1)
 		return (-1);
-	else
-		run_cmd(cmd);
-	return (1);
+	// else
+	// 	run_cmd(cmd);
+	ft_putstr("minishell: command not found: ");
+	ft_putendl(cmd[0]);
+	return (0);
 }
