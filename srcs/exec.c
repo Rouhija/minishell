@@ -6,7 +6,7 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 15:12:08 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/04 18:04:02 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/04 19:24:25 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 // char 	*args[] = {"/bin/ls", "srcs", "-l", NULL};
 // execve("/bin/ls", args, NULL);
 
-int		run_cmd(char **cmd)
+int		run_cmd(char *bin, char **cmd)
 {
 	pid_t	pid;
 
@@ -26,9 +26,30 @@ int		run_cmd(char **cmd)
 		return (-1);
 	}
 	signal(SIGINT, sub_signal_handler);
-	execve(cmd[0], cmd, g_env);
+	execve(bin, cmd, g_env);
 	wait(&pid);
 	return (1);
+}
+
+int		bins(char **cmd)
+{
+	int				i;
+	char			**path;
+	char			*exec;
+	struct stat		attr;
+
+	i = 0;
+	path = ft_strsplit(get_env("PATH"), ':');
+	while (path && path[i])
+	{
+		exec = ft_pathjoin(path[i], cmd[0]);
+		if (!lstat(exec, &attr))
+			return (run_cmd(exec, cmd));
+		free(exec);
+		i++;
+	}
+	ft_freestrarr(path);
+	return (0);
 }
 
 int		builtins(char **cmd)
@@ -51,13 +72,12 @@ int		builtins(char **cmd)
 int		exec_cmd(char **cmd)
 {
 	int r;
-	// ft_printf("cmd[0]: %s\n", cmd[0]);
 	if ((r = builtins(cmd)) == 1)
 		return (0);
 	else if (r == -1)
 		return (-1);
-	// else
-	// 	run_cmd(cmd);
+	else if (bins(cmd) == 1)
+		return (0);
 	ft_putstr("minishell: command not found: ");
 	ft_putendl(cmd[0]);
 	return (0);

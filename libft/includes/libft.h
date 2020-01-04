@@ -6,7 +6,7 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 16:29:36 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/03 16:36:12 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/04 18:22:39 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,20 @@
 # include <stdint.h>
 # include <unistd.h>
 # include <wchar.h>
+
+/*
+** -------- COLORS --------
+*/
+
+# define BLACK "\033[01;30m"
+# define RED "\033[01;31m"
+# define GREEN "\033[01;32m"
+# define YELLOW "\033[01;33m"
+# define BLUE "\033[01;34m"
+# define MAGNETA "\033[01;35m"
+# define CYAN "\033[01;36m"
+# define WHITE "\033[01;37m"
+# define NORMAL "\033[0;39m"
 
 /*
 ** -------- MACROS --------

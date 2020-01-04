@@ -6,7 +6,7 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 18:33:38 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/04 17:33:25 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/04 19:22:24 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int		display_env(void);
 int		find_env(char *var);
 char	*get_env(char *var);
 int		setenv_builtin(char **cmd);
-void		set_env(char *key, char *value);
+void	set_env(char *key, char *value);
 int		unsetenv_builtin(char **args);
 char	**realloc_arr(size_t size);
 void	init_env(int ac, char **av, char **env);
