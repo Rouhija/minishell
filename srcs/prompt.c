@@ -6,7 +6,7 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/04 18:11:02 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/05 14:14:18 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/05 16:17:12 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static char		*parse_host(void)
 	return (r);
 }
 
-static char		*parse_path(char *cwd)
+char		*parse_path(char *cwd)
 {
 	char	*home;
 	char	*propmt;
@@ -46,7 +46,7 @@ static char		*parse_path(char *cwd)
 **		Format: user@hostname:pwd>
 */
 
-void			display_prompt(void)
+void		display_prompt(void)
 {
 	// char	*host;
 	char	*prompt;

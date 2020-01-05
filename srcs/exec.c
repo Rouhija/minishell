@@ -6,7 +6,7 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 15:12:08 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/05 13:12:25 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/05 15:43:23 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,11 @@ int		builtins(char **cmd)
 		return (unsetenv_builtin(cmd + 1));
 	else if (ft_strequ(cmd[0], "env"))
 		return (display_env());
+	else if (ft_strequ(cmd[0], "pwd"))
+	{
+		ft_putendl(get_env("PWD"));
+		return (1);
+	}
 	return (0);
 }
 
