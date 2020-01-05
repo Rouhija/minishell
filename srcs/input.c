@@ -6,7 +6,7 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/04 20:55:28 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/05 13:21:07 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/05 15:26:57 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,49 @@ static char		*auto_complete(char **input, int *i, int *size)
 	return (r);
 }
 
-void			parse_dollars(char **input)
+static void			parse_dollars(char **input)
 {
+	int		i;
+	char	*tmp;
+	char	*var;
+	char	*value;
 
+	i = 1;
+	tmp = *input;
+	while ((tmp = ft_strchr(tmp, '$')))
+	{
+		while (tmp[i] != '\0' && tmp[i] != '$' && !ft_is_whitespace(tmp[i]))
+			i++;
+		var = ft_strsub(tmp, 0, i);
+		if ((value = get_env(var + 1)))
+		{
+			*input = ft_str_replace(*input, var, value);
+			tmp = *input;
+		}
+		tmp++;
+		i = 1;
+		free(var);
+	}
+}
+
+static void			parse_tilde(char **input)
+{
+	int		i;
+	char	*tmp;
+	char	*var;
+	char	*value;
+
+	i = 1;
+	tmp = *input;
+	while ((tmp = ft_strchr(tmp, '~')))
+	{
+		if ((value = get_env("HOME")))
+		{
+			*input = ft_str_replace(*input, "~", value);
+			tmp = *input;
+		}
+		tmp++;
+	}
 }
 
 void			read_input(char **input)
@@ -85,5 +125,5 @@ void			read_input(char **input)
 		exit_shell(1);
 	}
 	ft_strchr(*input, '$') ? parse_dollars(input) : PASS;
-	// parse $ and ~
+	ft_strchr(*input, '~') ? parse_tilde(input) : PASS;
 }

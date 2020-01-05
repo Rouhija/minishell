@@ -6,7 +6,7 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/04 16:55:11 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/04 21:04:54 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/05 15:20:05 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int		cd_builtin(char **args)
 	if (ft_strequ(args[0], "."))
 		return (1);
 	else if (!args[0]
-			|| ft_strequ(args[0], "~")
 			|| ft_strequ(args[0], get_env("USER"))
 			|| ft_strequ(args[0], "--"))
 		move_to(home, 0);

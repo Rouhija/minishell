@@ -6,7 +6,7 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 18:37:39 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/05 13:18:53 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/05 15:29:25 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,14 @@ int		main(int ac, char **av, char **env)
 		cmds = ft_strsplit(input, ' ');
 		free(input);
 		r = exec_cmd(cmds);
-		ft_printf("return: %d\n", r);
+		// ft_printf("return: %d\n", r);
 		ft_freestrarr(cmds);
 		if (r < 0)
 			break ;
 	}
-	ft_putstr("minishell: Thanks ");
+	ft_putstr("minishell: ");
 	ft_putstr(get_env("USER"));
-	ft_putendl(", bye! ⚡");
+	ft_putendl(" exit.");
 	ft_freestrarr(g_env);
 	return (0);
 }

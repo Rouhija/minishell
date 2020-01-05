@@ -6,7 +6,7 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/04 18:11:02 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/04 20:59:06 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/05 14:14:18 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,21 +48,21 @@ static char		*parse_path(char *cwd)
 
 void			display_prompt(void)
 {
-	char	*host;
+	// char	*host;
 	char	*prompt;
 	char 	buffer[BUF_SIZE + 1];
 
 	getcwd(buffer, BUF_SIZE);
-	host = parse_host();
+	// host = parse_host();
 	prompt = parse_path(buffer);
-	ft_putstr(GREEN);
-	ft_putstr(host);
-	ft_putstr(NORMAL);
-	ft_putchar(':');
+	// ft_putstr(GREEN);
+	// ft_putstr(host);
+	// ft_putstr(NORMAL);
+	// ft_putchar(':');
 	ft_putstr(BLUE);
 	ft_putstr(prompt);
 	ft_putstr(NORMAL);
-	ft_strdel(&host);
+	// ft_strdel(&host);
 	ft_strdel(&prompt);
-	ft_putstr(" ☭ -> ");
+	ft_putstr("⚡> ");
 }
