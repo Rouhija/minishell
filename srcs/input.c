@@ -6,38 +6,38 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/04 20:55:28 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/05 15:26:57 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/05 17:57:04 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static char		*auto_complete(char **input, int *i, int *size)
-{
-	struct dirent	*dp;
-	DIR				*dir;
-	char			*pwd;
-	int				len;
-	char			*r;
+// static char		*auto_complete(char **input, int *i, int *size)
+// {
+// 	struct dirent	*dp;
+// 	DIR				*dir;
+// 	char			*pwd;
+// 	int				len;
+// 	char			*r;
 
-	r = NULL;
-	len = ft_strlen(*input);
-	pwd = get_env("PWD");
-	if (!(dir = opendir(pwd)))
-		exit_shell(1);
-	while ((dp = readdir(dir)))
-	{
-		if (ft_strstr((*dp).d_name, *input))
-		{
-			ft_putendl("MATCH");
-			r = ft_strdup(&(*dp).d_name[len]);
-			break ;
-		}
-		ft_putendl("pöö");
-	}
-	closedir(dir);
-	return (r);
-}
+// 	r = NULL;
+// 	len = ft_strlen(*input);
+// 	pwd = get_env("PWD");
+// 	if (!(dir = opendir(pwd)))
+// 		exit_shell(1);
+// 	while ((dp = readdir(dir)))
+// 	{
+// 		if (ft_strstr((*dp).d_name, *input))
+// 		{
+// 			ft_putendl("MATCH");
+// 			r = ft_strdup(&(*dp).d_name[len]);
+// 			break ;
+// 		}
+// 		ft_putendl("pöö");
+// 	}
+// 	closedir(dir);
+// 	return (r);
+// }
 
 static void			parse_dollars(char **input)
 {
@@ -68,7 +68,6 @@ static void			parse_tilde(char **input)
 {
 	int		i;
 	char	*tmp;
-	char	*var;
 	char	*value;
 
 	i = 1;

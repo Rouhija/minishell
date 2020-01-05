@@ -6,7 +6,7 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 15:02:40 by srouhe            #+#    #+#             */
-/*   Updated: 2019/10/17 15:06:01 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/05 18:30:34 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,8 @@ int		ft_strequ(char const *s1, char const *s2)
 {
 	if (s1 && s2)
 	{
-		while (*s1++ && *s2++)
-		{
-			if (*s1 != *s2)
-				return (0);
-		}
+		if (!ft_strcmp(s1, s2))
+			return (1);
 	}
-	return (1);
+	return (0);
 }

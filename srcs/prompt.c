@@ -6,31 +6,28 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/04 18:11:02 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/05 16:17:12 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/05 18:13:23 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static char		*parse_host(void)
+static char		*prompt_prefix(void)
 {
 	char	*user;
-	char	*host;
 	char	*tmp;
 	char	*r;
 
 	user = get_env("USER");
-	host = get_env("NAME");
 	tmp = ft_strjoin(user, "@");
-	r = ft_strjoin(tmp, host);
+	r = ft_strjoin(tmp, "minishell");
 	free(tmp);
 	return (r);
 }
 
-char		*parse_path(char *cwd)
+char			*parse_path(char *cwd)
 {
 	char	*home;
-	char	*propmt;
 
 	if (!cwd)
 		return (NULL);
@@ -46,23 +43,25 @@ char		*parse_path(char *cwd)
 **		Format: user@hostname:pwd>
 */
 
-void		display_prompt(void)
+void			display_prompt(void)
 {
-	// char	*host;
+	char	*prefix;
 	char	*prompt;
-	char 	buffer[BUF_SIZE + 1];
+	char	buffer[BUF_SIZE + 1];
 
 	getcwd(buffer, BUF_SIZE);
-	// host = parse_host();
+	prefix = prompt_prefix();
 	prompt = parse_path(buffer);
-	// ft_putstr(GREEN);
-	// ft_putstr(host);
-	// ft_putstr(NORMAL);
-	// ft_putchar(':');
+	ft_putstr(GREEN);
+	ft_putstr(prefix);
+	ft_putstr(NORMAL);
+	ft_putchar(':');
 	ft_putstr(BLUE);
 	ft_putstr(prompt);
 	ft_putstr(NORMAL);
-	// ft_strdel(&host);
+	ft_strdel(&prefix);
 	ft_strdel(&prompt);
-	ft_putstr("⚡> ");
+	ft_putstr(YELLOW);
+	ft_putstr("⚡ ");
+	ft_putstr(NORMAL);
 }

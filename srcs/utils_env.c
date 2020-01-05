@@ -6,7 +6,7 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 14:56:31 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/04 17:21:09 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/05 18:27:45 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,14 +95,20 @@ char		**realloc_arr(size_t size)
 	i = 0;
 	if (!(new = (char **)malloc(sizeof(char *) * (size + 1))))
 		exit_shell(2);
-	while (g_env[i] && i < size - 1)
+	while (g_env[i] && i < (int)(size - 1))
 	{
 		if (!(new[i] = ft_strdup(g_env[i])))
 			exit_shell(2);
 		ft_strdel(&g_env[i]);
 		i++;
 	}
-	new[i] = NULL;
+	while (g_env[i])
+	{
+		ft_strdel(&g_env[i]);
+		i++;
+	}
+	new[size] = NULL;
 	free(g_env);
+	g_env = NULL;
 	return (new);
 }
