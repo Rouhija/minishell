@@ -6,7 +6,7 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 18:37:39 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/05 15:43:37 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/05 17:39:51 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ int				main(int ac, char **av, char **env)
 		if (r < 0)
 			break ;
 	}
-	ft_putendl("minishell: graceful exit.");
 	ft_freestrarr(g_env);
 	return (0);
 }
