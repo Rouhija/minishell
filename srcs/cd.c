@@ -6,26 +6,33 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/04 16:55:11 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/05 19:37:06 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/06 01:37:32 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	move_to(char *path, int print)
+static void		print_path(char *path)
 {
 	char	*tmp;
+
+	tmp = parse_path(path);
+	ft_putendl(tmp);
+	free(tmp);
+}
+
+static void		move_to(char *path, int print)
+{
 	char	*cwd;
 	char	buffer[BUF_SIZE + 1];
 
-	tmp = parse_path(path);
-	cwd = getcwd(buffer, BUF_SIZE);
+	getcwd(buffer, BUF_SIZE);
 	if (!chdir(path))
 	{
-		set_env("OLDPWD", cwd);
+		set_env("OLDPWD", buffer);
 		cwd = getcwd(buffer, BUF_SIZE);
 		set_env("PWD", cwd);
-		print ? ft_putendl(tmp) : PASS;
+		print ? print_path(path) : PASS;
 	}
 	else
 	{
@@ -38,10 +45,9 @@ void	move_to(char *path, int print)
 			ft_putstr("not a directory: ");
 		ft_putendl(path);
 	}
-	free(tmp);
 }
 
-void	change_pwd(char **args)
+void			change_pwd(char **args)
 {
 	char	*cwd;
 
@@ -89,3 +95,8 @@ int		cd_builtin(char **args)
 		move_to(args[0], 0);
 	return (1);
 }
+
+	// char	*pwd;
+	// 	ft_bzero(buffer, BUF_SIZE);
+	// 	pwd = getcwd(buffer, BUF_SIZE);
+	// 	set_env("PWD", pwd);

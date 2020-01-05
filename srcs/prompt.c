@@ -6,7 +6,7 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/04 18:11:02 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/05 19:31:44 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/05 23:04:29 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void			display_prompt(void)
 	ft_putstr(NORMAL);
 	ft_strdel(&prefix);
 	ft_strdel(&prompt);
-	ft_putstr(YELLOW);
-	ft_putstr("⚡ ");
-	ft_putstr(NORMAL);
+	// ft_putstr("⚡ ");
+	ft_putstr("> ");
 }

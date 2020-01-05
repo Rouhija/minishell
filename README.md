@@ -38,5 +38,10 @@ https://stackoverflow.com/questions/10028038/how-to-simulate-keyboard-input-for-
 https://github.com/Julien-R44/21sh
 
 ### TO-DO
-- unsetenv HOME segfault
+- CLEAN DIR BEFORE SUBMIT
 - PIPE
+
+### Valgrind
+```
+valgrind --track-origins=yes
+```

@@ -6,7 +6,7 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/04 20:55:28 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/05 20:16:44 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/06 01:08:38 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,9 @@ static void			parse_dollars(char **input)
 
 static void			parse_tilde(char **input)
 {
-	int		i;
 	char	*tmp;
 	char	*value;
 
-	i = 1;
 	tmp = *input;
 	while ((tmp = ft_strchr(tmp, '~')))
 	{
@@ -87,7 +85,7 @@ static void			parse_tilde(char **input)
 void			read_input(char **input)
 {
 	int		n_read;
-	int		size;
+	// int		size;
 	int		i;
 	char	buf;
 
@@ -96,8 +94,8 @@ void			read_input(char **input)
 	char	*tmp;
 
 	i = 0;
-	size = 1;
-	*input = ft_strnew(1);
+	// size = 1;
+	*input = ft_strnew(BUF_SIZE);
 	if (pipe(p) < 0) 
 		exit_shell(3);
 	while ((n_read = read(0, &buf, 1) > 0) && buf != '\n')
@@ -119,8 +117,8 @@ void			read_input(char **input)
 		else
 		{
 			*(*input + i++) = buf;
-			*input = ft_realloc(*input, (size_t)size, (size_t)(size + 1));
-			size++;
+			// *input = ft_realloc(*input, (size_t)size, (size_t)(size + 1));
+			// size++;
 		}
 	}
 	*(*input + i) = '\0';

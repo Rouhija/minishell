@@ -6,7 +6,7 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 14:56:31 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/05 18:36:23 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/06 00:48:08 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ int		display_env(void)
 	i = 0;
 	while (g_env[i])
 	{
-		ft_putendl(g_env[i]);
+		if (!ft_strstr(g_env[i], SH_UNSET))
+			ft_putendl(g_env[i]);
 		i++;
 	}
 	return (1);
@@ -99,12 +100,7 @@ char	**realloc_arr(size_t size)
 	{
 		if (!(new[i] = ft_strdup(g_env[i])))
 			exit_shell(2);
-		ft_strdel(&g_env[i]);
-		i++;
-	}
-	while (g_env[i])
-	{
-		ft_strdel(&g_env[i]);
+		free(g_env[i]);
 		i++;
 	}
 	new[size] = NULL;
