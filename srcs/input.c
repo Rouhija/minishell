@@ -6,7 +6,7 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/04 20:55:28 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/04 22:48:55 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/05 13:21:07 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@ static char		*auto_complete(char **input, int *i, int *size)
 	}
 	closedir(dir);
 	return (r);
+}
+
+void			parse_dollars(char **input)
+{
+
 }
 
 void			read_input(char **input)
@@ -79,5 +84,6 @@ void			read_input(char **input)
 		free(input);
 		exit_shell(1);
 	}
+	ft_strchr(*input, '$') ? parse_dollars(input) : PASS;
 	// parse $ and ~
 }

@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_iswhitespace.c                                  :+:      :+:    :+:   */
+/*   ft_str_isempty.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/18 14:09:58 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/05 13:14:23 by srouhe           ###   ########.fr       */
+/*   Created: 2020/01/05 13:15:44 by srouhe            #+#    #+#             */
+/*   Updated: 2020/01/05 13:17:54 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_is_whitespace(int c)
+#include "libft.h"
+
+int		ft_str_isempty(const char *s)
 {
-	if (c == ' ' || c == '\n' || c == '\t' || c == '\r' || c == '\v')
-		return (1);
-	return (0);
+	int		i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (!ft_is_whitespace(s[i]))
+			return (0);
+		i++;
+	}
+	return (1);
 }

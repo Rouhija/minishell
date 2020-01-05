@@ -6,7 +6,7 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 15:12:08 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/04 20:49:12 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/05 13:12:25 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int		builtins(char **cmd)
 int		exec_cmd(char **cmd)
 {
 	int r;
+
 	if ((r = builtins(cmd)) == 1)
 		return (0);
 	else if (r == -1)

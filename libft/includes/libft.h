@@ -6,7 +6,7 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 16:29:36 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/04 18:22:39 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/05 13:18:42 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,7 @@ int					ft_get_next_line(const int fd, char **line);
 
 int					ft_count_digits(uint64_t n, int base);
 int					ft_lfind(const char *s, int c);
+int					ft_str_isempty(const char *s);
 char				*ft_putchar_w(wint_t c);
 char				*ft_putstr_w(wchar_t *str);
 char				*ft_strupper(char *str);
