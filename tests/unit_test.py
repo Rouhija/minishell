@@ -21,7 +21,7 @@ class TestMinishell(unittest.TestCase):
 			stderr=subprocess.PIPE)
 		p_command.stdout.close()
 		stdout, stderr = p_minishell.communicate()
-		return stdout.decode(), stderr.decode()
+		return stdout.decode('utf-8'), stderr.decode('utf-8')
 
 	def execute_real_shell(self, command):
 		cmd_list = ["/bin/echo"] + command
@@ -33,7 +33,7 @@ class TestMinishell(unittest.TestCase):
 			stderr=subprocess.PIPE)
 		p_command.stdout.close()
 		stdout, stderr = p_real_shell.communicate()
-		return stdout.decode(), stderr.decode()
+		return stdout.decode('utf-8'), stderr.decode('utf-8')
 
 	def compare_shells(self, command):
 		real_std = self.execute_real_shell(command)

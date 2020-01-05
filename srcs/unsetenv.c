@@ -6,7 +6,7 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 18:13:41 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/04 17:06:20 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/05 18:37:11 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void		unset_env(int pos)
 
 	ft_strdel(&g_env[pos]);
 	i = pos;
-	while(g_env[i + 1])
+	while (g_env[i + 1])
 	{
 		g_env[i] = ft_strdup(g_env[i + 1]);
 		ft_strdel(&g_env[i + 1]);

@@ -6,7 +6,7 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 16:12:05 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/03 18:20:57 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/05 20:08:01 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,14 @@
 
 static void		echo(char *arg)
 {
-	size_t	len;
+	char	*parsed;
+	char	quote[2];
 
-	len = ft_strlen(arg);
-	if (arg[0] == '"' && arg[len - 1] == '"')
-		ft_putnstr(arg + 1, len - 2);
-	else if (arg[0] == '"')
-		ft_putstr(arg + 1);
-	else if (arg[len - 1] == '"')
-		ft_putnstr(arg, len - 1);
-	else
-		ft_putstr(arg);
+	quote[0] = '"';
+	quote[1] = '\0';
+	parsed = ft_str_replace(ft_strdup(arg), quote, "");
+	ft_putstr(parsed);
+	free(parsed);
 }
 
 /*

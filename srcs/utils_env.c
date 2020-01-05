@@ -6,7 +6,7 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 14:56:31 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/05 18:27:45 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/05 18:36:23 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ char	*get_env(char *var)
 	return (NULL);
 }
 
-char		**realloc_arr(size_t size)
+char	**realloc_arr(size_t size)
 {
 	int		i;
 	char	**new;

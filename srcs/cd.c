@@ -6,7 +6,7 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/04 16:55:11 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/05 16:17:47 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/05 19:37:06 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	move_to(char *path, int print)
 			ft_putstr("permission denied: ");
 		else
 			ft_putstr("not a directory: ");
-		ft_putendl(path);			
+		ft_putendl(path);
 	}
 	free(tmp);
 }
@@ -61,17 +61,28 @@ void	change_pwd(char **args)
 		ft_putstr("cd: string not in pwd: ");
 		ft_putendl(args[0]);
 	}
-	
 }
+
+/*
+**		Built in cd command.
+**		Two args: modifies PWD variable and jumps into that directory.
+*/
 
 int		cd_builtin(char **args)
 {
-	if (!args[0])
-		move_to(get_env("HOME"), 0);
+	char	*home;
+
+	home = get_env("HOME");
+	if (!args[0] || ft_strequ(args[0], get_env("USER"))
+				|| ft_strequ(args[0], "--"))
+	{
+		if (home)
+			move_to(home, 0);
+		else
+			return (1);
+	}
 	else if (args[0] && args[1])
 		change_pwd(args);
-	else if (ft_strequ(args[0], get_env("USER")) || ft_strequ(args[0], "--"))
-		move_to(get_env("HOME"), 0);
 	else if (ft_strequ(args[0], "-"))
 		move_to(get_env("OLDPWD"), 1);
 	else

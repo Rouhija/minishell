@@ -28,10 +28,6 @@ to the error output.
 ◦ wait, waitpid, wait3, wait4
 ◦ signal, kill
 ◦ exit
-```sh
-int
-execv(const char *path, char *const argv[]);
-```
 
 ### Reading
 [exec/fork/wait](https://www.usna.edu/Users/cs/aviv/classes/ic221/s16/lec/14/lec.html)
@@ -39,3 +35,8 @@ execv(const char *path, char *const argv[]);
 pipes
 https://www.geeksforgeeks.org/pipe-system-call/
 https://stackoverflow.com/questions/10028038/how-to-simulate-keyboard-input-for-a-program-in-c
+https://github.com/Julien-R44/21sh
+
+### TO-DO
+- unsetenv HOME segfault
+- PIPE

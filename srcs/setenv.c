@@ -6,13 +6,13 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 17:01:10 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/04 18:03:37 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/05 18:37:27 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void		set_env(char *key, char *value)
+void	set_env(char *key, char *value)
 {
 	int		i;
 	char	*tmp;
@@ -44,7 +44,7 @@ void		set_env(char *key, char *value)
 **		If no arguments, display current env variables.
 */
 
-int				setenv_builtin(char **args)
+int		setenv_builtin(char **args)
 {
 	if (!args[0])
 		display_env();

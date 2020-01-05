@@ -6,7 +6,7 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 15:12:08 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/05 17:53:01 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/05 19:20:33 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int		check_binary(char *path, char **args, struct stat attr)
 		}
 		return (1);
 	}
-	return (0);	
+	return (0);
 }
 
 static int		bins(char **cmd)
@@ -100,7 +100,7 @@ static int		builtins(char **cmd)
 **			4. Check for binaries in PWD.
 */
 
-int		exec_cmd(char **cmd)
+int				exec_cmd(char **cmd)
 {
 	int				r;
 	struct stat		attr;
