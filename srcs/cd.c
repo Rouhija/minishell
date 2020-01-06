@@ -6,7 +6,7 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/04 16:55:11 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/06 14:49:59 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/06 15:35:25 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,12 @@ static void		move_to(char *path, int print)
 	char	*cwd;
 	char	buffer[BUF_SIZE + 1];
 
-	getcwd(buffer, BUF_SIZE);
 	if (!chdir(path))
 	{
-		set_env("OLDPWD", buffer);
+		set_env("OLDPWD", get_env("PWD"));
 		cwd = getcwd(buffer, BUF_SIZE);
 		set_env("PWD", cwd);
-		print ? print_path(path) : PASS;
+		print ? print_path(cwd) : PASS;
 	}
 	else
 	{

@@ -6,7 +6,7 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/04 20:55:28 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/06 14:57:56 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/06 15:01:54 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,7 @@ void				read_input(char **input)
 	i = 0;
 	*input = ft_strnew(BUF_SIZE);
 	while ((n_read = read(0, &buf, 1) > 0) && buf != '\n')
-	{
 		*(*input + i++) = buf;
-	}
 	*(*input + i) = '\0';
 	if (!n_read)
 	{

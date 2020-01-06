@@ -6,7 +6,7 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/04 18:11:02 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/06 14:50:57 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/06 15:09:03 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ char			*parse_path(char *cwd)
 		return (NULL);
 	home = get_env("HOME");
 	if (!home)
+		return (ft_strdup(cwd));
+	else if (!ft_strstr(cwd, home))
 		return (ft_strdup(cwd));
 	else if (ft_strequ(cwd, home))
 		return (ft_strdup("~"));
