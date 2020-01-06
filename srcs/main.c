@@ -6,7 +6,7 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 18:37:39 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/05 19:46:27 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/06 14:58:49 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void			exit_shell(int reason)
 {
 	ft_freestrarr(g_env);
+	reason == 0 ? ft_putchar('\n') : PASS;
 	reason == 1 ? ft_putendl("undefined error.") : PASS;
 	reason == 2 ? ft_putendl("malloc error.") : PASS;
 	reason == 3 ? ft_putendl("pipe error.") : PASS;

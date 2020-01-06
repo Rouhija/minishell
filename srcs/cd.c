@@ -6,7 +6,7 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/04 16:55:11 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/06 01:37:32 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/06 14:49:59 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void			change_pwd(char **args)
 **		Two args: modifies PWD variable and jumps into that directory.
 */
 
-int		cd_builtin(char **args)
+int				cd_builtin(char **args)
 {
 	char	*home;
 
@@ -95,8 +95,3 @@ int		cd_builtin(char **args)
 		move_to(args[0], 0);
 	return (1);
 }
-
-	// char	*pwd;
-	// 	ft_bzero(buffer, BUF_SIZE);
-	// 	pwd = getcwd(buffer, BUF_SIZE);
-	// 	set_env("PWD", pwd);
