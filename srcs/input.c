@@ -6,7 +6,7 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/04 20:55:28 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/06 15:01:54 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/06 17:35:42 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void				read_input(char **input)
 			free(*input);
 		exit_shell(0);
 	}
+	*input = ft_str_replace(*input, "\t", " ");
 	ft_strchr(*input, '$') ? parse_dollars(input) : PASS;
 	ft_strchr(*input, '~') ? parse_tilde(input) : PASS;
 }

@@ -6,7 +6,7 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 15:12:08 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/06 15:24:47 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/06 17:48:44 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,6 @@ static int		builtins(char **cmd)
 		return (unsetenv_builtin(cmd + 1));
 	else if (ft_strequ(cmd[0], "env"))
 		return (display_env());
-	else if (ft_strequ(cmd[0], "recover"))
-		return (recover_builtin(cmd + 1));
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/04 18:11:02 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/06 15:09:03 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/06 18:10:18 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,15 @@ static char		*prompt_prefix(void)
 	char	*tmp;
 	char	*r;
 
-	user = get_env("USER");
-	tmp = ft_strjoin(user, "@");
-	r = ft_strjoin(tmp, "minishell");
-	free(tmp);
-	return (r);
+	user = get_env("USER") ? get_env("USER") : get_env("LOGNAME");
+	if (user)
+	{
+		tmp = ft_strjoin(user, "@");
+		r = ft_strjoin(tmp, "minishell");
+		free(tmp);
+		return (r);
+	}
+	return (NULL);
 }
 
 char			*parse_path(char *cwd)
@@ -56,10 +60,13 @@ void			display_prompt(void)
 	getcwd(buffer, BUF_SIZE);
 	prefix = prompt_prefix();
 	prompt = parse_path(buffer);
-	ft_putstr(GREEN);
-	ft_putstr(prefix);
-	ft_putstr(NORMAL);
-	ft_putchar(':');
+	if (prefix)
+	{
+		ft_putstr(GREEN);
+		ft_putstr(prefix);
+		ft_putstr(NORMAL);
+		ft_putchar(':');
+	}
 	ft_putstr(BLUE);
 	ft_putstr(prompt);
 	ft_putstr(NORMAL);

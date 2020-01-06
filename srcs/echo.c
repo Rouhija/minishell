@@ -6,20 +6,26 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 16:12:05 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/05 20:08:01 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/06 17:39:34 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void		echo(char *arg)
+char			*parse_quotes(char *s)
 {
-	char	*parsed;
 	char	quote[2];
 
 	quote[0] = '"';
 	quote[1] = '\0';
-	parsed = ft_str_replace(ft_strdup(arg), quote, "");
+	return (ft_str_replace(ft_strdup(s), quote, ""));
+}
+
+static void		echo(char *arg)
+{
+	char	*parsed;
+
+	parsed = parse_quotes(arg);
 	ft_putstr(parsed);
 	free(parsed);
 }

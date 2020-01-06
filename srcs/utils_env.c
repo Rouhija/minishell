@@ -6,7 +6,7 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 14:56:31 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/06 00:48:08 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/06 18:00:56 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,7 @@ int		display_env(void)
 	i = 0;
 	while (g_env[i])
 	{
-		if (!ft_strstr(g_env[i], SH_UNSET))
-			ft_putendl(g_env[i]);
+		ft_putendl(g_env[i]);
 		i++;
 	}
 	return (1);

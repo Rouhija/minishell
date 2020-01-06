@@ -6,7 +6,7 @@
 #    By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/15 16:29:02 by srouhe            #+#    #+#              #
-#    Updated: 2020/01/06 15:25:24 by srouhe           ###   ########.fr        #
+#    Updated: 2020/01/06 17:48:29 by srouhe           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,6 @@ FILES 	=	main.c \
 			utils_env.c \
 			setenv.c \
 			unsetenv.c \
-			recoverenv.c \
 			signal.c \
 			exec.c \
 			echo.c \

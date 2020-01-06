@@ -6,7 +6,7 @@
 /*   By: srouhe <srouhe@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 18:33:38 by srouhe            #+#    #+#             */
-/*   Updated: 2020/01/06 15:25:18 by srouhe           ###   ########.fr       */
+/*   Updated: 2020/01/06 18:00:42 by srouhe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ char	**g_env;
 */
 
 # define BUF_SIZE 4096
-# define SH_UNSET "/*deleted*/"
 
 /*
 ** -------- FUNCTIONS --------
@@ -48,11 +47,11 @@ int		display_env(void);
 int		find_env(char *var);
 int		setenv_builtin(char **cmd);
 int		unsetenv_builtin(char **args);
-int		recover_builtin(char **args);
 
 char	*get_env(char *var);
 char	**realloc_arr(size_t size);
 char	*parse_path(char *cwd);
+char	*parse_quotes(char *s);
 
 void	set_env(char *key, char *value);
 void	init_env(int ac, char **av, char **env);
